@@ -1,0 +1,12 @@
+.MuiButton-root.button{
+  margin: 0px 10px;
+  padding:14.5px 14px;
+}
+
+.textfield{
+  width:50%;
+}
+
+li{
+  list-style-type:none;
+}
