@@ -19,26 +19,14 @@ export default[
              "value": "部屋掃除",
              "checked": true,
              "removed":false
-           },
-           {
-            "id": 3,
-            "value": "お風呂",
-            "checked": true,
-            "removed":true
            }
         ]);
         break;
       case '2':
         res.json([
           {
-              "id": 1,
-              "value": "買い物",
-              "checked": false,
-              "removed":false
-          },
-          {
             "id": 2,
-            "value": "完了したタスク",
+            "value": "部屋掃除",
             "checked": true,
             "removed":false
           }
@@ -47,14 +35,8 @@ export default[
       case '3':
         res.json([
           {
-            "id": 2,
-            "value": "部屋掃除",
-            "checked": true,
-            "removed":false
-          },
-          {
-            "id": 3,
-            "value": "現在のタスク",
+            "id": 1,
+            "value": "買い物",
             "checked": false,
             "removed":false
           }
@@ -65,7 +47,7 @@ export default[
           {
             "id": 3,
             "value": "お風呂",
-            "checked": true,
+            "checked": false,
             "removed":true
           }
         ])

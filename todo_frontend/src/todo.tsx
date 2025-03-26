@@ -62,7 +62,7 @@ export default function ToDoList() {
   const[todos,setTodos]=useState<Todo[]>([]);//<Todo[]>は型の指定
 
   //tab切り替え
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
     if(newValue==0 || newValue==3){
       getAPI(newValue+1);
