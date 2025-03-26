@@ -6,8 +6,8 @@ import TextField  from '@mui/material/TextField';
 import Button  from '@mui/material/Button';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+// import List from '@mui/material/List';
+// import ListItem from '@mui/material/ListItem';
 import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
 import {useState,useEffect} from 'react';
@@ -57,15 +57,27 @@ let nextId=0;
 
 export default function ToDoList() {
   const storage=localStorage;
-
   const[value,setValue]=React.useState(0);
   const[title,setTitle]=React.useState("");//初期値
   const[todos,setTodos]=useState<Todo[]>([]);//<Todo[]>は型の指定
+
+  //tab切り替え
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    if(newValue==0 || newValue==3){
+      getAPI(newValue+1);
+    }else if(newValue==1){
+      getAPI(3);//現在のタスクにtype=3を呼ぶ
+    }else{
+      getAPI(2)//完了したタスクtype=2を呼ぶ
+    }
+    // getAPI(newValue+1)
+    setTodos(todos)
   };
 
   useEffect(() => {
+    //初期読み込み
+    getAPI(1);//getAPI内にsetTodosがあるので更新が起こる
     const savedTodos = localStorage.getItem('todos');
     if (savedTodos) {
       setTodos(JSON.parse(savedTodos));
@@ -77,6 +89,7 @@ export default function ToDoList() {
       localStorage.setItem('todos', JSON.stringify(todos));
     }
   }, [todos]);  //todosが変更されるたびに保存
+
 
   function handleTitle(title: string){
     setTitle(title);
@@ -127,11 +140,10 @@ export default function ToDoList() {
     localStorage.setItem('todos', JSON.stringify(remainingTodos));  //ローカルストレージを更新
   }
 
-
   //titleを受けとって追加
   function onAddTodo(title: string){
     //idを取得
-    nextId=JSON.parse(storage.getItem('id'));
+    nextId=JSON.parse(storage.getItem('id') || '0');
     setTodos([
       ...todos,
       {
@@ -146,6 +158,16 @@ export default function ToDoList() {
     // console.log(todos)
     //idを保存
     storage.setItem("id",JSON.stringify(nextId));
+  }
+
+  function getAPI(num: number){
+    fetch(`http://localhost:3000/getToDoList?type=${num}`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setTodos(data);//setTodosされるのでuseEffectが動く！
+      return data
+    });
   }
 
   return (

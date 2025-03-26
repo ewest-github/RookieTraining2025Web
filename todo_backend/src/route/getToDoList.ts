@@ -10,47 +10,68 @@ export default[
         res.json([
           {
             "id": 1,
-            "title": "買い物",
-            "complete_flag": false,
+            "value": "買い物",
+            "checked": false,
+            "removed":false
           },
           {
              "id": 2,
-             "title": "部屋掃除",
-             "complete_flag": true
+             "value": "部屋掃除",
+             "checked": true,
+             "removed":false
+           },
+           {
+            "id": 3,
+            "value": "お風呂",
+            "checked": true,
+            "removed":true
            }
-        ]
-        );
+        ]);
         break;
       case '2':
-        res.json({
-          "id": 1,
-          "title": "買い物",
-          "complete_flag": false
-        });
+        res.json([
+          {
+              "id": 1,
+              "value": "買い物",
+              "checked": false,
+              "removed":false
+          },
+          {
+            "id": 2,
+            "value": "完了したタスク",
+            "checked": true,
+            "removed":false
+          }
+        ]);
         break;
       case '3':
-        res.json({
-          "id": 2,
-          "title": "部屋掃除",
-          "complete_flag": true
-        });
+        res.json([
+          {
+            "id": 2,
+            "value": "部屋掃除",
+            "checked": true,
+            "removed":false
+          },
+          {
+            "id": 3,
+            "value": "現在のタスク",
+            "checked": false,
+            "removed":false
+          }
+        ]);
         break;
       case '4':
-        res.json({
-          "id": 3,
-          "title": "部屋掃除",
-          "complete_flag": true
-        });
+        res.json([
+          {
+            "id": 3,
+            "value": "お風呂",
+            "checked": true,
+            "removed":true
+          }
+        ])
         break;
-      case '4':
-        res.json({
-          "id": 3,
-          "title": "お風呂",
-          "complete_flag": true
-        })
-        break;
-      default:
-        res.send("default")
+      // default:
+      //   res.send("default")
     }
   }
 ]
