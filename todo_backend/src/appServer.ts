@@ -1,5 +1,6 @@
 import express from 'express';
 import helloWorld from './route/HelloWorld';
+import getToDoList from './route/getToDoList';
 
 const app=express();
 
@@ -22,6 +23,7 @@ app.use(
 
 app.use(express.json());
 
-app.get('*',...helloWorld);
+app.get('/getToDoList',...getToDoList);
+// app.get('*',...helloWorld);
 
 export default app;
