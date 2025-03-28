@@ -1,6 +1,8 @@
 import express from 'express';
 import helloWorld from './route/HelloWorld';
 import getToDoList from './route/getToDoList';
+import addToDo from './route/addToDo';
+import updateToDo from './route/updateToDo';
 
 const app=express();
 
@@ -23,7 +25,9 @@ app.use(
 
 app.use(express.json());
 
-app.get('/getToDoList',...getToDoList);
+app.get('/getToDoList',getToDoList);
 // app.get('*',...helloWorld);
+app.post('/addToDo',addToDo)
+app.post('/updateToDo',updateToDo)
 
 export default app;
