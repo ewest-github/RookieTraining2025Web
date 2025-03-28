@@ -28,6 +28,7 @@ app.use(express.json());
 app.get('/getToDoList',getToDoList);
 // app.get('*',...helloWorld);
 app.post('/addToDo',addToDo)
-app.post('/updateToDo',updateToDo)
+//↓エラー箇所
+// app.post('/updateToDo',updateToDo)
 
 export default app;
